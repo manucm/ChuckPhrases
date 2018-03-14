@@ -15,11 +15,11 @@ class CreateInitialTables extends Migration
     {
         Schema::create('jokes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->unique();
-            $table->string('icon_id', 255);
+            $table->integer('user_id')->unsigned();
+            $table->string('icon_url', 255);
             $table->text('value');
-            $table->string('slug', 100);
-            $table->string(70);
+            $table->string('slug', 100)->nullable();
+            $table->boolean('isVisited')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
@@ -34,7 +34,7 @@ class CreateInitialTables extends Migration
 CREATE TRIGGER add_slug_to_jokes_bi BEFORE INSERT ON `jokes` FOR
 EACH ROW
   BEGIN
-    set new.slug = md5(CONCAT(new.icon_id, new.value));
+    set new.slug = md5(CONCAT(new.icon_url, new.value));
   END
 EOT;
 
