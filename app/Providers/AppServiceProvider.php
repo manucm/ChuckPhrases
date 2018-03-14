@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Database\Query\Builder;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +15,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Builder::macro('orderByRandom', function () {
+
+            $randomFunctions = [
+                'mysql'  => 'RAND()',
+                'pgsql'  => 'RANDOM()',
+                'sqlite' => 'RANDOM()',
+                'sqlsrv' => 'NEWID()',
+            ];
+        
+            $driver = $this->getConnection()->getDriverName();
+        
+            return $this->orderByRaw($randomFunctions[$driver]);
+        });
     }
 
     /**
