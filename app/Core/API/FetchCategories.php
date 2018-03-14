@@ -15,7 +15,10 @@
       }
   
       public function all() {
-        return collect($this->fetch->getData());
+        return collect($this->fetch->getData())->map(function($category) {
+          $record['name'] = $category;
+          return $record;
+        });
       }
     }
     
