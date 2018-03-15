@@ -31821,8 +31821,15 @@ module.exports = function spread(callback) {
 "use strict";
 var jokeServices = __webpack_require__(36);
 
-jokeServices.getRandomJoke().then(function (data) {
-  console.log(data);
+jokeServices.getRandomJoke().then(function (_ref) {
+  var joke = _ref.joke,
+      joke_image = _ref.joke_image,
+      owner = _ref.owner;
+
+
+  $('#random-joke').html(joke);
+  $('#random-data').find('img').eq(0).attr('src', joke_image);
+  $('#random-data').find('span').eq(0).html(owner);
 });
 
 /***/ }),

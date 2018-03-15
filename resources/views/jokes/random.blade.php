@@ -2,10 +2,13 @@
 
 @section('content')
 
-<div class="jumbotron">
-    <h1>Hello, world!</h1>
-    <p>...</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+<div id="random-component">
+  <div class="jumbotron">
+    <h1>El chiste elegido!!!</h1>
+    <p id="random-joke"></p>
+    <p id="random-data"><img src="" alt=""> <span></span></p>
   </div>
+</div>
+
 
 @endsection
