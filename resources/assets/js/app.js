@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+require('./dom/jokes');
+
 window.Vue = require('vue');
 
 /**
