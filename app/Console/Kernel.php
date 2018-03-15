@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\VisitedJoke::class,
+        \App\Console\Commands\UnvisitedJoke::class,
     ];
 
     /**
