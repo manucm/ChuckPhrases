@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/prueba', function () {
      //$fetch = new App\Core\API\Fetch('https://api.chucknorris.io/jokes/search?query=joke');
      $fecthCategory = new App\Core\API\FetchJokes();
      $jokes = $fecthCategory->get(10);
@@ -44,3 +44,6 @@ Route::get('/', function () {
 Route::get('/pruebas', function() {
     dd(App\Core\Models\Joke::orderByRandom()->limit(1)->toSql());
 });
+
+
+Route::get('/', ['uses' => 'JokesController@random']);
