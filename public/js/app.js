@@ -58701,7 +58701,7 @@ var apariciones = function apariciones(visitas) {
 };
 
 var buttons = function buttons(joke) {
-  return '\n  <a href="/joke/' + joke.slug + '">\n          <button class="btn btn-info btn-sm" type="button">\n            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>\n          </button></a>\n          <a href="/delete/' + joke.slug + '">\n          <button class="btn btn-warning btn-sm" type="button">\n            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>\n          </button></a> ';
+  return '\n  <a href="/jokes/' + joke.slug + '">\n          <button class="btn btn-info btn-sm" type="button">\n            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>\n          </button></a>\n          <a href="/jokes/delete/' + joke.slug + '">\n          <button class="btn btn-warning btn-sm" type="button">\n            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>\n          </button></a> ';
 };
 
 /***/ })

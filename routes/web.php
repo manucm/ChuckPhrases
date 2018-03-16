@@ -47,7 +47,12 @@ Route::get('/pruebas', function() {
 
 //####
 
+//Login
+Route::get('/login', ['uses' => 'LoginController@index']);
+Route::post('/login', ['uses' => 'LoginController@login']);
+Route::get('/logout', ['uses' => 'LoginController@logout']);
 
+//Jokes
 Route::get('/', ['uses' => 'JokesController@random']);
 
 Route::get('/jokes', ['uses' => 'JokesController@list']);

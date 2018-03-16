@@ -33,11 +33,11 @@ const apariciones = (visitas) => {
 
 const buttons = (joke) => {
   return (`
-  <a href="/joke/${joke.slug}">
+  <a href="/jokes/${joke.slug}">
           <button class="btn btn-info btn-sm" type="button">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
           </button></a>
-          <a href="/delete/${joke.slug}">
+          <a href="/jokes/delete/${joke.slug}">
           <button class="btn btn-warning btn-sm" type="button">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </button></a> `)
