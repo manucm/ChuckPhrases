@@ -1,53 +1,66 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+#Guía para descargar y desplegar el proyecto de frases célebres de Chuck Norris
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+#Para descargar el proyecto
+git clone https://github.com/manucm/ChuckPhrases.git
 
-## About Laravel
+#Descargar las dependencias del Proyecto
+composer install
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+#Generar una key para el proyecto
+php artisan key:generate
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#Completar el .env
+JOKE_NUMBERS=x
+#donde x es el número de registros que se quiere introducir en la BD.
+#los datos de frases célebres se obtendrán de una api externa https://api.chucknorris.io
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+#Para la BD yo he optado por MySQL pero bien se podría usar PostgresQL, SQL Server,..
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=interhanse
+DB_USERNAME=chucknorris
+DB_PASSWORD=chucknorris
+#Para usar esta configuración habría que crear en mysql una base de datos con nombre interhanse 
+#y un usuario con username y password chucknorris que tenga permisos sobre dicha BD
 
-## Learning Laravel
+#Ejecutar las migraciones y el seed de datos
+php artisan migrate install --seed
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+//Generar el bundle de javascript y el css a partir de sass
+npm run dev
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+#Con todos ellos se podrá logar y administrar la app
+El proyecto se ha desarrollado con la versión 5.5.0 de Laravel
 
-## Laravel Sponsors
+#En el archivo hosts que se encuentra en la ruta 
+C:\Windows\System32\drivers\etc (Window)
+/etc/hosts (MACOSX y linux)
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+#Se añade la siguiente línea:
+127.0.0.1			www.nombre_host.es
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
+#Como servidor web he usado Apache
+por tanto en la carpeta de configuración:
+C:\laragon\etc\apache2\sites-enabled
 
-## Contributing
+Se añade un fichero de configuración 
+nombre.conf
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+y se agrega la siguiente configuración:
+<VirtualHost _default_:80>
+   ServerName www.interhanse.es 
+   ServerAlias www.interhanse.es 
+   DocumentRoot C:\laragon\www\interhanse-test\public
+   <Directory "C:\laragon\www\interhanse-test\public"> 
+       AllowOverride All
+       Require all granted
+   </Directory>
+</VirtualHost>
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+//Con el seed se generan dos usuarios con los que nos podemos logar en la aplicación
+username: System, interhanse
+password: secret para ambos
+//Además se genrean otros 3 "Fake usuarios"
+username: se genera de forma aleatoria
+password: secret
