@@ -20,7 +20,7 @@
             <form class="" action="{{ url('login') }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group @if($errors->has('username')) has-danger @elseif (old('username')) has-success @else @endif">
-                    <label class="form-control-label" for="username">username</label>
+                    <label class="form-control-label" for="username">Usuario</label>
                     <input type="text" class="form-control @if($errors->has('username')) form-control-danger @else form-control-success @endif"  id="username" name="username" value="{{ old('username') }}">
                     @if($errors->has('username'))<div class="form-control-feedback">{{ $errors->first('username') }}</div>@endif
                     {{-- <small class="form-text text-muted">Example help text that remains unchanged.</small>--}}

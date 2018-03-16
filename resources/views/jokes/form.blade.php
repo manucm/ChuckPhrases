@@ -29,7 +29,7 @@
   
           <div class="form-group col-sm-12">
               {!! Form::label('category_id', 'Categoria') !!}
-              {!! Form::select('category_id', ['' => ''] + $categories->toArray() , $joke->categories, ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'recorrido']) !!}
+              {!! Form::select('category_id[]', ['' => ''] + $categories->toArray() , $joke->categories, ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'recorrido']) !!}
           </div>
           
   

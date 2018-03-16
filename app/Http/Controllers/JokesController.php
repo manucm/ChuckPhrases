@@ -76,8 +76,19 @@ class JokesController extends Controller
 
         $categories = $request->get('category_id'); 
 
+
         $joke->categories()->sync($categories);
 
+        
+
         return redirect('/jokes');
+    }
+
+    public function delete(Joke $joke) {
+        //$joke->delete();
+
+        return response()->json([
+            'status' => 'OK'
+        ]);
     }
 }

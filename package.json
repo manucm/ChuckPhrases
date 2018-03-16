@@ -19,6 +19,7 @@
         "vue": "^2.1.10"
     },
     "dependencies": {
+        "bootstrap3-dialog": "^1.35.4",
         "datatables": "^1.10.13",
         "select2": "^4.0.6-rc.1"
     }

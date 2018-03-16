@@ -23,3 +23,5 @@ Route::post('/joke/markAsVisited', ['uses' => 'JokesController@markAsVisited']);
 
 Route::get('/jokes', ['uses' => 'JokesController@listApi']);
 
+Route::delete('/jokes/{slug}', ['uses' => 'JokesController@delete']);
+

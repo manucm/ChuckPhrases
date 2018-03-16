@@ -10,7 +10,8 @@ require('./bootstrap');
 
 
 require('../../../node_modules/datatables/media/js/jquery.dataTables');
-require('../../../node_modules/select2/dist/js/select2.js');
+require('../../../node_modules/select2/dist/js/select2');
+
 
 require('./dom/jokes');
 

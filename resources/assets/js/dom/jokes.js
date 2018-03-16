@@ -1,6 +1,8 @@
 const jokeServices = require('../services/jokes');
 
+
 if ($('#random-component').length) {
+
   jokeServices.getRandomJoke().then(function({joke, joke_image, owner, slug, isVisited}) {
 
     $('#random-joke').html(joke);
