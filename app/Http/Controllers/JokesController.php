@@ -85,7 +85,7 @@ class JokesController extends Controller
     }
 
     public function delete(Joke $joke) {
-        //$joke->delete();
+        $joke->delete();
 
         return response()->json([
             'status' => 'OK'
