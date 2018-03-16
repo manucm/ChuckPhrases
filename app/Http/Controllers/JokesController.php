@@ -62,20 +62,19 @@ class JokesController extends Controller
 
     public function store(JokeRequest $request, Joke $joke)  {
         
-        $data = [
-            'value' => $request->get('value'),
-        ];
         if(is_null($joke->id)) {
-            $data = array_merge($data, [
-                'icon_url' => 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
-                'user_id'=> Auth::user()->id,
-            ]);
-            $joke->create($data);
+                $joke->icon_url = 'https://assets.chucknorris.host/img/avatar/chuck-norris.png';
+                $joke->user_id= Auth::user()->id;
+                $joke->value = $request->get('value');
+            
+            $joke->save();
         }  else {
-            $joke->update($data);
+            $joke->update([
+                'value' => $request->get('value')
+            ]);
         }
 
-        $categories = $request->get('category_id');
+        $categories = $request->get('category_id'); 
 
         $joke->categories()->sync($categories);
 

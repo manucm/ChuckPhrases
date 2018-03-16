@@ -49,7 +49,7 @@ class VisitedJoke extends Command
 
         if ($this->login($user, $pass)) {
             $headers = ['id', 'Value'];
-            $visitedJoked = \App\Core\Models\Joke::where('isVisited', 1)->select('id', 'value')->get();
+            $visitedJoked = \App\Core\Models\Joke::where('isVisited', '>=', 1)->select('id', 'value')->get();
 
            $this->table($headers, $visitedJoked);
         } else {

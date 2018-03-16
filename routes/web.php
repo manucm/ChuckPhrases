@@ -55,12 +55,15 @@ Route::get('/logout', ['uses' => 'LoginController@logout']);
 //Jokes
 Route::get('/', ['uses' => 'JokesController@random']);
 
-Route::get('/jokes', ['uses' => 'JokesController@list']);
+Route::group(['middleware' => 'authorization'], function() {
+    Route::get('/jokes', ['uses' => 'JokesController@list']);
 
-Route::get('/jokes/create', ['uses' => 'JokesController@create']);
+    Route::get('/jokes/create', ['uses' => 'JokesController@create']);
+    
+    Route::get('/jokes/{slug}', ['uses' => 'JokesController@create']);
+    
+    
+    Route::post('/jokes/create', ['uses' => 'JokesController@store']);
+    Route::put('/jokes/{slug}', ['uses' => 'JokesController@store']);
+});
 
-Route::get('/jokes/{slug}', ['uses' => 'JokesController@create']);
-
-
-Route::post('/jokes/create', ['uses' => 'JokesController@store']);
-Route::put('/jokes/{slug}', ['uses' => 'JokesController@store']);

@@ -34,7 +34,7 @@ class CreateInitialTables extends Migration
 CREATE TRIGGER add_slug_to_jokes_bi BEFORE INSERT ON `jokes` FOR
 EACH ROW
   BEGIN
-    set new.slug = md5(CONCAT(new.icon_url, new.value));
+    set new.slug = md5(CONCAT(new.icon_url, new.value, new.created_at));
   END
 EOT;
 
