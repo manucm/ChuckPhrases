@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Core\Models\Joke;
+use App\Http\Requests\JokeRequest;
 
 class JokesController extends Controller
 {
@@ -50,7 +51,34 @@ class JokesController extends Controller
         ]);
     }
 
-    public function update(Joke $joke) {
-        dd($joke);
+    public function create(Joke $joke) {
+        $action = (is_null($joke->id))? 'create' : 'update';
+
+        $categories = \App\Core\Models\Category::all()->pluck('name', 'id');
+        
+
+        return view('jokes.form', compact('action', 'joke', 'categories'));
+    }
+
+    public function store(JokeRequest $request, Joke $joke)  {
+        
+        $data = [
+            'value' => $request->get('value'),
+        ];
+        if(is_null($joke->id)) {
+            $data = array_merge($data, [
+                'icon_url' => 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
+                'user_id'=> Auth::user()->id,
+            ]);
+            $joke->create($data);
+        }  else {
+            $joke->update($data);
+        }
+
+        $categories = $request->get('category_id');
+
+        $joke->categories()->sync($categories);
+
+        return redirect('/jokes');
     }
 }

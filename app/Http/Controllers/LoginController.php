@@ -22,7 +22,7 @@ class LoginController extends Controller
                         ->withInput();
           return redirect('/jokes');
     }
-    public function destroy() {
+    public function logout() {
          Auth::logout();
          return redirect('login');
     }

@@ -4,7 +4,7 @@
 
 <div class="listado-component">
     <div class="panel panel-primary">
-      <div class="panel-heading">Listado de Bromas del tío Chuck!!</div>
+      <div class="panel-heading"><h4>Listado de Bromas del tío Chuck!! <a href="{{ url('jokes/create') }}" class="btn btn-success pull-right">Crear</a> </h4> </div>
         <div class="panel-body">
             <table id="table-component" class="table">
                 <thead>

@@ -10,10 +10,13 @@ require('./bootstrap');
 
 
 require('../../../node_modules/datatables/media/js/jquery.dataTables');
+require('../../../node_modules/select2/dist/js/select2.js');
 
 require('./dom/jokes');
 
 require('./dom/jokeList');
+
+require('./plugins/select2');
 
 window.Vue = require('vue');
 

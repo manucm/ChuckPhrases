@@ -41,7 +41,7 @@ Route::get('/prueba', function () {
 
 });
 
-Route::get('/pruebas', function() {
+Route::get('/pruebas', function() {dd(Auth::user()->id);
     dd(App\Core\Models\Joke::orderByRandom()->limit(1)->toSql());
 });
 
@@ -57,6 +57,10 @@ Route::get('/', ['uses' => 'JokesController@random']);
 
 Route::get('/jokes', ['uses' => 'JokesController@list']);
 
-Route::get('/jokes/{slug}', ['uses' => 'JokesController@update']);
+Route::get('/jokes/create', ['uses' => 'JokesController@create']);
 
-Route::post('/jokes/{slug}', ['uses' => 'JokesController@store']);
+Route::get('/jokes/{slug}', ['uses' => 'JokesController@create']);
+
+
+Route::post('/jokes/create', ['uses' => 'JokesController@store']);
+Route::put('/jokes/{slug}', ['uses' => 'JokesController@store']);
