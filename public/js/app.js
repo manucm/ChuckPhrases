@@ -31824,12 +31824,31 @@ var jokeServices = __webpack_require__(36);
 jokeServices.getRandomJoke().then(function (_ref) {
   var joke = _ref.joke,
       joke_image = _ref.joke_image,
-      owner = _ref.owner;
+      owner = _ref.owner,
+      slug = _ref.slug,
+      isVisited = _ref.isVisited;
 
 
   $('#random-joke').html(joke);
   $('#random-data').find('img').eq(0).attr('src', joke_image);
   $('#random-data').find('span').eq(0).html(owner);
+
+  isVisited++;
+
+  var classType = isVisited == 1 ? 'panel-success' : 'panel-primary';
+  var message = isVisited == 1 ? 'Bravo!! es la primera aparición de este chiste' : 'El chiste ha aparecido ' + isVisited;
+
+  $('#random-panel').addClass(classType);
+  $('.panel-body').eq(0).html(message);
+
+  ++isVisited;
+
+  return { slug: slug, isVisited: isVisited };
+}).then(function (_ref2) {
+  var slug = _ref2.slug,
+      isVisited = _ref2.isVisited;
+
+  jokeServices.markJokeAsVisited(slug, isVisited);
 });
 
 /***/ }),
@@ -31839,10 +31858,18 @@ jokeServices.getRandomJoke().then(function (_ref) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRandomJoke", function() { return getRandomJoke; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "markJokeAsVisited", function() { return markJokeAsVisited; });
 var getRandomJoke = function getRandomJoke() {
   return axios.get('/api/random').then(function (response) {
     console.log(response.data);
     return response.data;
+  });
+};
+
+var markJokeAsVisited = function markJokeAsVisited(slug, isVisited) {
+  axios.post('/api/joke/markAsVisited', {
+    slug: slug,
+    isVisited: isVisited
   });
 };
 
