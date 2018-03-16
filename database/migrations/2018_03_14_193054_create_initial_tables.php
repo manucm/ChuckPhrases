@@ -19,7 +19,7 @@ class CreateInitialTables extends Migration
             $table->string('icon_url', 255);
             $table->text('value');
             $table->string('slug', 100)->nullable();
-            $table->boolean('isVisited')->default(0);
+            $table->integer('isVisited')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
