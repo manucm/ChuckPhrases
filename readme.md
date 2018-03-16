@@ -13,6 +13,8 @@ php artisan key:generate
 JOKE_NUMBERS=x
 #donde x es el número de registros que se quiere introducir en la BD.
 #los datos de frases célebres se obtendrán de una api externa https://api.chucknorris.io
+SYSTEM_USER=System
+para tener el usuario de sistema de la aplicación. por defecto es 'System'
 
 #Para la BD yo he optado por MySQL pero bien se podría usar PostgresQL, SQL Server,..
 DB_CONNECTION=mysql
