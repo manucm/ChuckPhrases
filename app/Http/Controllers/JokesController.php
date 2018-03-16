@@ -18,12 +18,22 @@ class JokesController extends Controller
                     ->orderByRandom()->limit(1)->first();
         
         $user = $joke->user;
-        
+
         return response()->json([
             'status' => 'OK',
             'joke' => $joke->value,
             'joke_image' => $joke->icon_url,
-            'owner' => $user->username == self::SYSTEM_USERNAME? 'Propiedad de Chuck Norris' : "{$user->name} {$user->lastname}"
+            'owner' => $user->username == self::SYSTEM_USERNAME? 'Propiedad de Chuck Norris' : "{$user->name} {$user->lastname}",
+            'slug' => $joke->slug,
+            'isVisited' => $joke->isVisited,
+        ]);
+    }
+
+    public function markAsVisited(Request $request) {
+        $slug = $request->get('slug');
+        $isVisited = $request->get('isVisited');
+        Joke::whereSlug($slug)->update([
+            'isVisited' => $isVisited
         ]);
     }
 }
