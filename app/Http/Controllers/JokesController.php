@@ -8,7 +8,7 @@ use App\Http\Requests\JokeRequest;
 
 class JokesController extends Controller
 {
-    const SYSTEM_USERNAME = 'System';
+    const SYSTEM_USERNAME = env(SYSTEM_USER, 'System');
 
     public function random() {
         return view('jokes.random');
