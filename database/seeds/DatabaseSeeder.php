@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
 
         Category::insert($categories->toArray());
 
-        $jokes = $this->fetchJokes->get(10);
+        $jokes = $this->fetchJokes->get(env('JOKE_NUMBERS', 10));
 
         $jokes->each(function($joke) {
             $joke = App\Core\Models\Joke::create([
@@ -78,7 +78,6 @@ class DatabaseSeeder extends Seeder
                 collect($joke->category)->each(function($category) use (&$jokeCategories, $persistedCategories) {
                     $jokeCategories[] = $persistedCategories[$category];
                 });
-                var_dump('asdf');
                 $joke->categories()->sync(jokeCategories);
             } else {
                 $joke->categories()->sync([1, 2]);

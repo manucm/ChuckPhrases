@@ -7,7 +7,13 @@
 
 require('./bootstrap');
 
+
+
+require('../../../node_modules/datatables/media/js/jquery.dataTables');
+
 require('./dom/jokes');
+
+require('./dom/jokeList');
 
 window.Vue = require('vue');
 

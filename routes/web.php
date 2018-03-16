@@ -45,5 +45,13 @@ Route::get('/pruebas', function() {
     dd(App\Core\Models\Joke::orderByRandom()->limit(1)->toSql());
 });
 
+//####
+
 
 Route::get('/', ['uses' => 'JokesController@random']);
+
+Route::get('/jokes', ['uses' => 'JokesController@list']);
+
+Route::get('/jokes/{slug}', ['uses' => 'JokesController@update']);
+
+Route::post('/jokes/{slug}', ['uses' => 'JokesController@store']);

@@ -26,6 +26,10 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        Route::bind('slug', function($value) {
+            return \App\Core\Models\Joke::whereSlug($value)->first() ?? abort(404);
+        });
     }
 
     /**

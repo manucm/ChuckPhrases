@@ -36,4 +36,21 @@ class JokesController extends Controller
             'isVisited' => $isVisited
         ]);
     }
+
+    public function list() {
+        return view('jokes.list');
+    }
+
+    public function listApi() {
+        $jokeList = Joke::with('user')->get();
+
+        return response()->json([
+            'jokeList' => $jokeList,
+            'count' => $jokeList->count()
+        ]);
+    }
+
+    public function update(Joke $joke) {
+        dd($joke);
+    }
 }

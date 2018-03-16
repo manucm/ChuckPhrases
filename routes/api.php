@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/random', ['uses' => 'JokesController@randomApi']);
 
 Route::post('/joke/markAsVisited', ['uses' => 'JokesController@markAsVisited']);
+
+Route::get('/jokes', ['uses' => 'JokesController@listApi']);
